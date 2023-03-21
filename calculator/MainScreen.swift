@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainScreen: View {
     var body: some View {
-        VStack() {
+        VStack {
             Spacer()
             HStack {
                 Spacer()

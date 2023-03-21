@@ -9,13 +9,13 @@ import SwiftUI
 
 struct Klavesnice: View {
     var body: some View {
-        VStack(spacing: 12) {
+        VStack(spacing: 20) {
             HStack {
-                Key("AC")
+                TopKey("AC")
                     .foregroundColor(.lightGray)
-                Key("+/-")
+                TopKey("+/-")
                     .foregroundColor(.lightGray)
-                Key("%")
+                TopKey("%")
                     .foregroundColor(.lightGray)
                 Key("÷")
                     .foregroundColor(.yellow)
@@ -51,15 +51,28 @@ struct Klavesnice: View {
                     .foregroundColor(.yellow)
             }
             HStack {
-                Capsule()
-                    .frame(height: 80)
-                    .foregroundColor(.gray)
+                Button(action: {
+                    print("0")
+                }, label: {
+                    ZStack {
+                        Capsule()
+                            .frame(minWidth: 170, maxWidth: 170, minHeight: 80, maxHeight: 80)
+                            .foregroundColor(.gray)
+                        Text("0")
+                            .foregroundColor(.white)
+                            .font(Font.largeTitle)
+                            .multilineTextAlignment(.leading)
+                            .frame(width: 110, height: 50, alignment: .leading)
+                    }
+                })
                 Key(",")
                     .foregroundColor(.gray)
                 Key("=")
                     .foregroundColor(.yellow)
             }
+            .padding(.horizontal)
         }
+        .frame(width: 400, height: 500)
     }
 }
 
@@ -80,6 +93,30 @@ struct Key: View {
                 Text(text)
                     .foregroundColor(.white)
                     .font(Font.largeTitle)
+            }
+        }
+        )
+        
+    }
+}
+
+struct TopKey: View {
+    let text: String
+    
+    init(_ text: String = "") {
+        self.text = text
+    }
+    
+    var body: some View {
+        Button(action: {
+            print(text)
+        }, label: {
+            ZStack {
+                Circle()
+                    .frame(minWidth: 80, maxWidth: 80, minHeight: 80, maxHeight: 80)
+                Text(text)
+                    .foregroundColor(.black)
+                    .font(.title)
             }
         }
         )
